@@ -1,38 +1,37 @@
 #include "../include/fecha.h"
 
-struct rep_fecha {
+struct rep_fecha
+{
     /************ Parte 2.1 ************/
     /*Escriba el código a continuación */
-
+    nat dia, mes, anio;
     /****** Fin de parte Parte 2.1 *****/
 };
 
-TFecha crearTFecha(nat dia, nat mes, nat anio) {
+TFecha crearTFecha(nat dia, nat mes, nat anio)
+{
     TFecha nuevaFecha = NULL;
     /************ Parte 3.1 ************/
     /*Escriba el código a continuación */
-
-
+    
     /****** Fin de parte Parte 3.1 *****/
     return nuevaFecha;
 }
 
-void liberarTFecha(TFecha &fecha) {
+void liberarTFecha(TFecha &fecha)
+{
     /************ Parte 3.3 ************/
     /*Escriba el código a continuación */
 
-
     /****** Fin de parte Parte 3.3 *****/
 }
-void imprimirTFecha(TFecha fecha) {
-    /************ Parte 3.5 ************/
-    /*Escriba el código a continuación */
-
-
-    /****** Fin de parte Parte 3.5 *****/
+void imprimirTFecha(TFecha fecha)
+{
+    printf("%u/%u/%u\n", fecha->dia, fecha->mes, fecha->anio);
 }
 
-TFecha copiarTFecha(TFecha fecha) {
+TFecha copiarTFecha(TFecha fecha)
+{
     return NULL;
 }
 
@@ -41,18 +40,17 @@ TFecha copiarTFecha(TFecha fecha) {
 /*Recuerde que las funciones auxiliares
   deben declararse antes de ser utilizadas*/
 
-
-void aumentarTFecha(TFecha &fecha, nat dias) {
-
+void aumentarTFecha(TFecha &fecha, nat dias)
+{
 }
 
 /****** Fin de parte Parte 3.9 *****/
 
-int compararTFechas(TFecha fecha1, TFecha fecha2) {
+int compararTFechas(TFecha fecha1, TFecha fecha2)
+{
     int res = 0;
     /************ Parte 3.10 ************/
     /*Escriba el código a continuación */
-
 
     /****** Fin de parte Parte 3.10 *****/
     return res;
