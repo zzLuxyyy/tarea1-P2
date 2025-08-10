@@ -22,7 +22,8 @@ void liberarTFecha(TFecha &fecha)
 {
     /************ Parte 3.3 ************/
     /*Escriba el código a continuación */
-
+    delete fecha;
+    fecha = NULL;
     /****** Fin de parte Parte 3.3 *****/
 }
 void imprimirTFecha(TFecha fecha)
