@@ -13,7 +13,7 @@ TFecha crearTFecha(nat dia, nat mes, nat anio)
     TFecha nuevaFecha = NULL;
     /************ Parte 3.1 ************/
     /*Escriba el código a continuación */
-    
+
     /****** Fin de parte Parte 3.1 *****/
     return nuevaFecha;
 }

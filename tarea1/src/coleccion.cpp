@@ -51,6 +51,7 @@ void agregarEnTColeccion(TColeccion &c, TLibro l)
 // Si la colección está vacía solo imprime el cabezal.
 void imprimirTColeccion(TColeccion c)
 {
+    //printf("Libro %d\n", c->isbn1);
 }
 
 // Función para verificar si un libro con isbn 'isbn' existe en la colección 'c'

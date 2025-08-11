@@ -8,28 +8,35 @@
 
 #include "../include/utils.h"
 
-nat leerNat() {
+nat leerNat()
+{
     nat res;
     scanf("%u", &res);
     return res;
 }
 
-char leerChar() {
+char leerChar()
+{
     char res;
     scanf(" %c", &res);
     return res;
 }
 
-double leerDouble() {
+double leerDouble()
+{
     double res;
     scanf("%lf", &res);
     return res;
 }
 
-void leerChars(char* cs) { scanf("%s", cs); }
+void leerChars(char *cs) { scanf("%s", cs); }
 
-void leerString(char* cs) { scanf(" \"%[^\"]\"", cs); }
+void leerString(char *cs) { scanf(" \"%[^\"]\"", cs); }
 
-void leerRestoLinea(char* cs) { scanf("%[^\n]", cs); }
+void leerRestoLinea(char *cs) { scanf("%[^\n]", cs); }
 
-void descartarRestoLinea() { char resto[256]; scanf("%[^\n]", resto); }
+void descartarRestoLinea()
+{
+    char resto[256];
+    scanf("%[^\n]", resto);
+}
