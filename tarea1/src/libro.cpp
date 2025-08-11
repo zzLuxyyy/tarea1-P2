@@ -1,13 +1,30 @@
 #include "../include/libro.h"
+#include <string.h> //lo necesitamos si o si para usar strcpy
 
-struct rep_libro
-{
+struct rep_libro { //la estructura del libro es la que dice en la tarea 
+int isbn;
+char titulo[MAX_TITULO];
+char nombreAutor[MAX_NOMBRE_AUTOR];
+char apellidoAutor[MAX_APELLIDO_AUTOR];
+char descripcion[MAX_DESCRIPCION];
+int idGeneroLibro;
+TFecha fechaEdicion; //esto es un putero del tipo fecha 
+
 };
 
 // Crea y retorna un elemento de tipo TLibro con los valores dados
-TLibro crearTLibro(int isbn, const char titulo[MAX_TITULO], const char nombreAutor[MAX_NOMBRE_AUTOR], const char apellidoAutor[MAX_APELLIDO_AUTOR], const char descripcion[MAX_DESCRIPCION], int idGeneroLibro, TFecha fechaEdicion)
-{
-    return NULL;
+TLibro crearTLibro(int isbn, const char titulo[MAX_TITULO], const char nombreAutor[MAX_NOMBRE_AUTOR], const char apellidoAutor[MAX_APELLIDO_AUTOR], const char descripcion[MAX_DESCRIPCION], int idGeneroLibro, TFecha fechaEdicion){
+    TLibro nuevoLibro = new rep_libro;
+
+    nuevo->isb = isbn;
+    strcpy(nuevoLibro->titulo, titulo);
+    strcpy(nuevoLibro->nombreAutor, nombreAutor);
+    strcpy(nuevoLibro->apellidoAutor, apellidoAutor);
+    strcpy(nuevoLibro->descripcion, descripcion);
+    nuevoLibro->idGeneroLibro = idGeneroLibro;
+    nuevo->fechaEdicion = copiarTFecha(fechaEdicion); //es un puntero, entonces al asigno directamente          
+
+    return nuevoLibro;
 }
 
 // Libera la memoria asignada para el libro 'l'
