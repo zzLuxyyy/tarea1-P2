@@ -2,6 +2,11 @@
 
 struct rep_coleccion
 {
+    int libros[MAX_LIBROS];
+    int tope;
+};
+struct rep_coleccion
+{
 };
 
 // Función para crear una TColeccion vacía que puede almacenar hasta MAX_LIBROS libros.
