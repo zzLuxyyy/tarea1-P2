@@ -99,4 +99,16 @@ void imprimirLibrosGeneroTColeccion(TColeccion c, int idGenero)
 // PRE: El libro debe pertenecer a la colección
 void removerDeTColeccion(TColeccion &c, int isbn)
 {
+    int i = 0;
+    //busco el indice del libro a eliminar
+    while (i < c->tope && isbnTLibro(c->libros[i]) != isbn) {
+        i++;
+    }
+
+    //libero el libro
+    liberarTLibro(c ->libros[i]);
+
+    //si el libro existe en la lista
+    c->libros[i] = c->libros[c->tope -1]; //muevo el libro que estaba en el final a la posicion del libro a eliminar
+    c->tope--; // el -- se usa igual que el ++ en el i, se usa para decrementar el valor de algo
 }
