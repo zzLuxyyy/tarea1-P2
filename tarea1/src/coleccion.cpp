@@ -1,10 +1,12 @@
 #include "../include/coleccion.h"
 
+
 struct rep_coleccion
 {
-    int libros[MAX_LIBROS];
+    TLibro libros[MAX_LIBROS]; //areglo con punteros
     int tope;
 };
+
 struct rep_coleccion
 {
 };
