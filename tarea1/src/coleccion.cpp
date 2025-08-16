@@ -58,8 +58,20 @@ void agregarEnTColeccion(TColeccion &c, TLibro l)
 // Si la colección está vacía solo imprime el cabezal.
 void imprimirTColeccion(TColeccion c)
 {
-    //printf("Libro %d\n", c->isbn1);
+int i;
+
+    if (c == NULL || c->tope == 0){ 
+        return; //por si está vacio no devolvemos nada
+    }else{
+
+        for (i = 0; i < c->tope; i++){
+            imprimirTLibro(c->libros[i]); //impirme libro con su formato
+        }
+
+    }
+
 }
+
 
 // Función para verificar si un libro con isbn 'isbn' existe en la colección 'c'
 // Recibe una colección c y un isbn y retorna true si y solo si la colección c contiene
@@ -92,6 +104,22 @@ bool existenLibrosFechaTColeccion(TColeccion c, TFecha f)
 // Si no hay libros con dicho género, no imprime nada.
 void imprimirLibrosGeneroTColeccion(TColeccion c, int idGenero)
 {
+ int i;
+ i = 0;
+    if (c == NULL || c->tope == 0){ 
+        return;
+
+    }else{
+
+        while (i <= c->tope - 1){
+            if (idGenero == idGeneroTLibro(c->libros[i]) ){
+                imprimirTLibro(c->libros[i]);
+            }
+
+            i++;
+    }
+
+    }
 }
 
 // Función para remover un libro de una colección
