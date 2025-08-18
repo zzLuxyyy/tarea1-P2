@@ -1,20 +1,21 @@
 #include "../include/coleccion.h"
+<<<<<<< Updated upstream
 #include <cassert> //es importante para poder usar assert
+=======
+>>>>>>> Stashed changes
 
 struct rep_coleccion
 {
-    TLibro libros[MAX_LIBROS]; //areglo con punteros
+    TLibro libros[MAX_LIBROS]; // areglo con punteros
     int tope;
-};
-
-struct rep_coleccion
-{
 };
 
 // Función para crear una TColeccion vacía que puede almacenar hasta MAX_LIBROS libros.
 TColeccion crearTColeccion()
 {
-    return NULL;
+    TColeccion nuevaColeccion = new rep_coleccion;
+    nuevaColeccion->tope = 0; // Inicializa la colección en 0.
+    return nuevaColeccion;
 }
 
 // Función para liberar la memoria asociada a una colección de libros.
@@ -22,8 +23,16 @@ TColeccion crearTColeccion()
 // Debe liberar además la memoria de cada uno de los libros de la colección.
 void liberarTColeccion(TColeccion &c)
 {
-    delete c;
-    c = NULL;
+    if (c != NULL)
+    {
+        for (int i = 0; i < c->tope; i++)
+        {
+            liberarTLibro(c->libros[i]);
+        }
+
+        delete c;
+        c = NULL;
+    }
 }
 
 // Función para agregar un nuevo libro 'l' a la colección 'l'
@@ -58,20 +67,19 @@ void agregarEnTColeccion(TColeccion &c, TLibro l)
 // Si la colección está vacía solo imprime el cabezal.
 void imprimirTColeccion(TColeccion c)
 {
-int i;
-
-    if (c == NULL || c->tope == 0){ 
-        return; //por si está vacio no devolvemos nada
-    }else{
-
-        for (i = 0; i < c->tope; i++){
-            imprimirTLibro(c->libros[i]); //impirme libro con su formato
+    int i;
+    printf("Colección de libros:\n"); // Agregue el encabezado porque siempre deberia imprimirse aunque no se devuelva nada.
+    if (c == NULL || c->tope == 0)
+        return; // por si está vacio no devolvemos nada
+    // Borre las llaves y los espacios porque no eran necesarios.
+    else
+    {
+        for (i = 0; i < c->tope; i++)
+        {
+            imprimirTLibro(c->libros[i]); // impirme libro con su formato
         }
-
     }
-
 }
-
 
 // Función para verificar si un libro con isbn 'isbn' existe en la colección 'c'
 // Recibe una colección c y un isbn y retorna true si y solo si la colección c contiene
@@ -89,6 +97,7 @@ bool estaEnTColeccion(TColeccion c, int isbn){
 // Recibe una colección y un isbn y regresa el libro con ese isbn
 // El libro retornado comparte memoria con el parámetro.
 // PRE: El libro debe estar en la colección
+<<<<<<< Updated upstream
 TLibro obtenerDeTColeccion(TColeccion c, int isbn){
     assert(estaEnTColeccion(c, isbn)); //uso assert para verificar que la PRE se cumpla, sino usaria un if normal
 
@@ -98,32 +107,51 @@ TLibro obtenerDeTColeccion(TColeccion c, int isbn){
 
     }
     return NULL; //por si no hubiera uno
+=======
+TLibro obtenerDeTColeccion(TColeccion c, int isbn)
+{
+    int i;
+    for (i = 0; c->tope > i; i++)
+    {
+        if (isbnTLibro(c->libros[i]) == isbn)
+        {
+            return c->libros[i];
+        }
+    }
+    return NULL; // por si no lo llegara a encontrar, mejor evalúo el caso, pero la PRE es clara, siempre lo encontrará
+>>>>>>> Stashed changes
 }
-
 
 // Función que retorna true si y solo si existe algún libro en la colección editado
 // el día de la fecha pasada por parámetro.
 // La función debe ejecutar un algoritmo de búsqueda binaria.
 bool existenLibrosFechaTColeccion(TColeccion c, TFecha f)
 {
-    int izq = 0; //para hacer una busqueda binaria 
-    int der = c->tope - 1; //porque empieza en 0 y no en 1
+    int izq = 0;           // para hacer una busqueda binaria
+    int der = c->tope - 1; // porque empieza en 0 y no en 1
 
-    while (izq <= der){
+    while (izq <= der)
+    {
+        if (c == NULL || c->tope == 0) return false; // Previene errores en caso de haber una funcion nula.
+
         int med = (izq + der) / 2;
         TFecha fmid = fechaEdicionTLibro(c->libros[med]);
         int cmp = compararTFechas(f, fmid);
 
-        if (cmp == 0){
-            return true;   
-        }else if (cmp > 0){
+        if (cmp == 0)
+        {
+            return true;
+        }
+        else if (cmp > 0)
+        {
             izq = med + 1; // si existe la fecha, va a estar de la mitad hacia la derecha del arreglo
-        }else{
-            der = med - 1; //buscara a la izquierda del arreglo 
+        }
+        else
+        {
+            der = med - 1; // buscara a la izquierda del arreglo
         }
     }
-    return false; //si no lo encontró
-
+    return false; // si no lo encontró
 }
 
 // Función para imprimir todos los libros de una colección con el género pasado por parámetro.
@@ -132,21 +160,24 @@ bool existenLibrosFechaTColeccion(TColeccion c, TFecha f)
 // Si no hay libros con dicho género, no imprime nada.
 void imprimirLibrosGeneroTColeccion(TColeccion c, int idGenero)
 {
- int i;
- i = 0;
-    if (c == NULL || c->tope == 0){ 
+    int i;
+    i = 0;
+    if (c == NULL || c->tope == 0)
+    {
         return;
+    }
+    else
+    {
 
-    }else{
-
-        while (i <= c->tope - 1){
-            if (idGenero == idGeneroTLibro(c->libros[i]) ){
+        while (i <= c->tope - 1)
+        {
+            if (idGenero == idGeneroTLibro(c->libros[i]))
+            {
                 imprimirTLibro(c->libros[i]);
             }
 
             i++;
-    }
-
+        }
     }
 }
 
@@ -156,15 +187,16 @@ void imprimirLibrosGeneroTColeccion(TColeccion c, int idGenero)
 void removerDeTColeccion(TColeccion &c, int isbn)
 {
     int i = 0;
-    //busco el indice del libro a eliminar
-    while (i < c->tope && isbnTLibro(c->libros[i]) != isbn) {
+    // busco el indice del libro a eliminar
+    while (i < c->tope && isbnTLibro(c->libros[i]) != isbn)
+    {
         i++;
     }
 
-    //libero el libro
-    liberarTLibro(c ->libros[i]);
+    // libero el libro
+    liberarTLibro(c->libros[i]);
 
-    //si el libro existe en la lista
-    c->libros[i] = c->libros[c->tope -1]; //muevo el libro que estaba en el final a la posicion del libro a eliminar
-    c->tope--; // el -- se usa igual que el ++ en el i, se usa para decrementar el valor de algo
+    // si el libro existe en la lista
+    c->libros[i] = c->libros[c->tope - 1]; // muevo el libro que estaba en el final a la posicion del libro a eliminar
+    c->tope--;                             // el -- se usa igual que el ++ en el i, se usa para decrementar el valor de algo
 }
