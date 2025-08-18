@@ -1,5 +1,5 @@
 #include "../include/coleccion.h"
-
+#include <cassert> //es importante para poder usar assert
 
 struct rep_coleccion
 {
