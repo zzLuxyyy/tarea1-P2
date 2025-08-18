@@ -1,8 +1,5 @@
 #include "../include/coleccion.h"
-<<<<<<< Updated upstream
 #include <cassert> //es importante para poder usar assert
-=======
->>>>>>> Stashed changes
 
 struct rep_coleccion
 {
@@ -97,17 +94,6 @@ bool estaEnTColeccion(TColeccion c, int isbn){
 // Recibe una colección y un isbn y regresa el libro con ese isbn
 // El libro retornado comparte memoria con el parámetro.
 // PRE: El libro debe estar en la colección
-<<<<<<< Updated upstream
-TLibro obtenerDeTColeccion(TColeccion c, int isbn){
-    assert(estaEnTColeccion(c, isbn)); //uso assert para verificar que la PRE se cumpla, sino usaria un if normal
-
-    for (int i = 0; i < c->tope; i++){
-        if (isbnTLibro(c->libros[i]) == isbn)
-            return c->libros[i];
-
-    }
-    return NULL; //por si no hubiera uno
-=======
 TLibro obtenerDeTColeccion(TColeccion c, int isbn)
 {
     int i;
@@ -119,7 +105,6 @@ TLibro obtenerDeTColeccion(TColeccion c, int isbn)
         }
     }
     return NULL; // por si no lo llegara a encontrar, mejor evalúo el caso, pero la PRE es clara, siempre lo encontrará
->>>>>>> Stashed changes
 }
 
 // Función que retorna true si y solo si existe algún libro en la colección editado
