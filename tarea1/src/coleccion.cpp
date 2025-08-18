@@ -76,24 +76,28 @@ int i;
 // Función para verificar si un libro con isbn 'isbn' existe en la colección 'c'
 // Recibe una colección c y un isbn y retorna true si y solo si la colección c contiene
 // un libro con isbn 'isbn'
-bool estaEnTColeccion(TColeccion c, int isbn)
-{
-    return false;
+bool estaEnTColeccion(TColeccion c, int isbn){
+     for (int i = 0; c->tope > i ; i++){
+        if (isbnTLibro(c->libros[i]) == isbn)
+        return true;
+
+     }
+      return false; //en el caso de que no esté en la coleccion
 }
 
 // Función para obtener un libro de una colección
 // Recibe una colección y un isbn y regresa el libro con ese isbn
 // El libro retornado comparte memoria con el parámetro.
 // PRE: El libro debe estar en la colección
-TLibro obtenerDeTColeccion(TColeccion c, int isbn)
-{
-    int i;
-    for (i = 0; c->tope > i ; i++){
-        if (isbnTLibro(c->libros[i]) == isbn){
-        return c->libros[i];
-        }
+TLibro obtenerDeTColeccion(TColeccion c, int isbn){
+    assert(estaEnTColeccion(c, isbn)); //uso assert para verificar que la PRE se cumpla, sino usaria un if normal
+
+    for (int i = 0; i < c->tope; i++){
+        if (isbnTLibro(c->libros[i]) == isbn)
+            return c->libros[i];
+
     }
-    return NULL; //por si no lo llegara a encontrar, mejor evalúo el caso, pero la PRE es clara, siempre lo encontrará
+    return NULL; //por si no hubiera uno
 }
 
 
