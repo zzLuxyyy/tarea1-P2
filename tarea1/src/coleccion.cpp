@@ -87,15 +87,39 @@ bool estaEnTColeccion(TColeccion c, int isbn)
 // PRE: El libro debe estar en la colección
 TLibro obtenerDeTColeccion(TColeccion c, int isbn)
 {
-    return NULL;
+    int i;
+    for (i = 0; c->tope > i ; i++){
+        if (isbnTLibro(c->libros[i]) == isbn){
+        return c->libros[i];
+        }
+    }
+    return NULL; //por si no lo llegara a encontrar, mejor evalúo el caso, pero la PRE es clara, siempre lo encontrará
 }
+
 
 // Función que retorna true si y solo si existe algún libro en la colección editado
 // el día de la fecha pasada por parámetro.
 // La función debe ejecutar un algoritmo de búsqueda binaria.
 bool existenLibrosFechaTColeccion(TColeccion c, TFecha f)
 {
-    return false;
+    int izq = 0; //para hacer una busqueda binaria 
+    int der = c->tope - 1; //porque empieza en 0 y no en 1
+
+    while (izq <= der){
+        int med = (izq + der) / 2;
+        TFecha fmid = fechaEdicionTLibro(c->libros[med]);
+        int cmp = compararTFechas(f, fmid);
+
+        if (cmp == 0){
+            return true;   
+        }else if (cmp > 0){
+            izq = med + 1; // si existe la fecha, va a estar de la mitad hacia la derecha del arreglo
+        }else{
+            der = med - 1; //buscara a la izquierda del arreglo 
+        }
+    }
+    return false; //si no lo encontró
+
 }
 
 // Función para imprimir todos los libros de una colección con el género pasado por parámetro.
