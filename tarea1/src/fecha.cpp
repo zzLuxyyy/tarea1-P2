@@ -84,21 +84,20 @@ TFecha copiarTFecha(TFecha fecha) // copia la fecha usando la funcion crear fech
 /*Recuerde que las funciones auxiliares
   deben declararse antes de ser utilizadas*/
 
-void aumentarTFecha(TFecha &fecha, nat dias)
-{
+void aumentarTFecha(TFecha &fecha, nat dias) {
 
-    fecha->dia += dias;
-    while (fecha->dia > diasMes(fecha->mes, fecha->anio))
-    {
-        fecha->dia -= diasMes(fecha->mes, fecha->anio);
-        fecha->mes++;
-        if (fecha->mes > 12)
-        {
-            fecha->mes = 1;
-            fecha->anio++;
-        }
+fecha->dia += dias;
+while (fecha->dia > diasMes(fecha->mes, fecha->anio)) { //cambio en aumentar, para que sea mas eficiente en numeros grandes
+    nat diasDelMes = diasMes(fecha->mes, fecha->anio);
+    fecha->dia -= diasDelMes;
+    fecha->mes++;
+    if (fecha->mes > 12) {
+        fecha->mes = 1;
+        fecha->anio++;
     }
 }
+}
+
 
 /****** Fin de parte Parte 3.9 *****/
 
