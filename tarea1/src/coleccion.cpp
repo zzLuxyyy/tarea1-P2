@@ -38,8 +38,20 @@ void liberarTColeccion(TColeccion &c)
 // quedando antes el último de ellos en ser ingresado (de más reciente a más antiguo).
 // Si la cantidad de libros en la colección es igual a MAX_LIBROS, la función no tiene efecto
 void agregarEnTColeccion(TColeccion &c, TLibro l)
-{  
+{
+    if (c == NULL || c->tope >= MAX_LIBROS)
+        return;
 
+    int i = c->tope - 1;
+
+    while (i >= 0 && compararTFechas(fechaEdicionTLibro(c->libros[i]), fechaEdicionTLibro(l)) > 0)
+    {
+        c->libros[i + 1] = c->libros[i];
+        i--;
+    }
+    // Inserta en la posición correcta.
+    c->libros[i + 1] = l;
+    c->tope++;
 }
 
 // Función para imprimir la información de todos los libros en la colección
@@ -82,13 +94,14 @@ void imprimirTColeccion(TColeccion c)
 // Función para verificar si un libro con isbn 'isbn' existe en la colección 'c'
 // Recibe una colección c y un isbn y retorna true si y solo si la colección c contiene
 // un libro con isbn 'isbn'
-bool estaEnTColeccion(TColeccion c, int isbn){
-     for (int i = 0; c->tope > i ; i++){
+bool estaEnTColeccion(TColeccion c, int isbn)
+{
+    for (int i = 0; i<c->tope> i; i++)
+    {
         if (isbnTLibro(c->libros[i]) == isbn)
-        return true;
-
-     }
-      return false; //en el caso de que no esté en la coleccion
+            return true;
+    }
+    return false; // en el caso de que no esté en la coleccion
 }
 
 // Función para obtener un libro de una colección
@@ -113,13 +126,14 @@ TLibro obtenerDeTColeccion(TColeccion c, int isbn)
 // La función debe ejecutar un algoritmo de búsqueda binaria.
 bool existenLibrosFechaTColeccion(TColeccion c, TFecha f)
 {
+    if (c == NULL || c->tope == 0)
+        return false; // Previene errores en caso de haber una funcion nula.
+
     int izq = 0;           // para hacer una busqueda binaria
     int der = c->tope - 1; // porque empieza en 0 y no en 1
 
     while (izq <= der)
     {
-        if (c == NULL || c->tope == 0) return false; // Previene errores en caso de haber una funcion nula.
-
         int med = (izq + der) / 2;
         TFecha fmid = fechaEdicionTLibro(c->libros[med]);
         int cmp = compararTFechas(f, fmid);

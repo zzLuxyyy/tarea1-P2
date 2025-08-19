@@ -1,5 +1,6 @@
 #include "../include/libro.h"
 #include <string.h> //lo necesitamos si o si para usar strcpy
+#include <stdio.h>
 
 struct rep_libro
 { // la estructura del libro es la que dice en la tarea
@@ -9,7 +10,7 @@ struct rep_libro
     char apellidoAutor[MAX_APELLIDO_AUTOR];
     char descripcion[MAX_DESCRIPCION];
     int idGeneroLibro;
-    TFecha fechaEdicion; // esto es un putero del tipo fecha
+    TFecha fechaEdicion; // esto es un puntero del tipo fecha
 };
 
 // Crea y retorna un elemento de tipo TLibro con los valores dados
@@ -115,8 +116,8 @@ TLibro copiarTLibro(TLibro l)
     strcpy(copia->nombreAutor, l->nombreAutor);
     strcpy(copia->apellidoAutor, l->apellidoAutor);
     strcpy(copia->descripcion, l->descripcion);
-    copia->idGeneroLibro = l->idGeneroLibro; //correccion en estos dos, llevan '=' no ',' da error si no los asignas 
-    copia->fechaEdicion = copiarTFecha(l->fechaEdicion);  // Llama a la función copiarTFecha.
+    copia->idGeneroLibro = l->idGeneroLibro;             // correccion en estos dos, llevan '=' no ',' da error si no los asignas
+    copia->fechaEdicion = copiarTFecha(l->fechaEdicion); // Llama a la función copiarTFecha.
 
     return copia;
 }
