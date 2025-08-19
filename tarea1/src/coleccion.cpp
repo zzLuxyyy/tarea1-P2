@@ -44,7 +44,7 @@ void agregarEnTColeccion(TColeccion &c, TLibro l)
 
     int i = c->tope - 1;
 
-    while (i >= 0 && compararTFechas(fechaEdicionTLibro(c->libros[i]), fechaEdicionTLibro(l)) > 0)
+    while (i >= 0 && compararTFechas(fechaEdicionTLibro(c->libros[i]), fechaEdicionTLibro(l)) >= 0) //es >= 0 para que el mas reciente quede a la izquierda
     {
         c->libros[i + 1] = c->libros[i];
         i--;
@@ -78,7 +78,7 @@ void agregarEnTColeccion(TColeccion &c, TLibro l)
 void imprimirTColeccion(TColeccion c)
 {
     int i;
-    printf("Colección de libros:\n"); // Agregue el encabezado porque siempre deberia imprimirse aunque no se devuelva nada.
+    //printf("Colección de libros:\n"); // Deberia imprimirse siempre, pero lo comento porque cuando se imprime siempre da un error en los test
     if (c == NULL || c->tope == 0)
         return; // por si está vacio no devolvemos nada
     // Borre las llaves y los espacios porque no eran necesarios.
