@@ -38,7 +38,8 @@ void liberarTColeccion(TColeccion &c)
 // quedando antes el último de ellos en ser ingresado (de más reciente a más antiguo).
 // Si la cantidad de libros en la colección es igual a MAX_LIBROS, la función no tiene efecto
 void agregarEnTColeccion(TColeccion &c, TLibro l)
-{
+{  
+
 }
 
 // Función para imprimir la información de todos los libros en la colección
